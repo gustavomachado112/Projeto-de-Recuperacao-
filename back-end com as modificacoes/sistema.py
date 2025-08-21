@@ -1,15 +1,8 @@
-
-# 1. Admin: e-mail: admin@doacoes.com, senha: 123
-# 2. Usuário Normal: e-mail: joao@email.com, senha: abc
-# 3. ONG: e-mail: ong@doacoes.com, senha: xyz
-
 import datetime
-import re  # ✅ ADICIONADO PARA VALIDAÇÃO DE EMAIL
 
-# ✅ FUNÇÃO PARA VALIDAR EMAIL
-def validar_email(email):
-    padrao = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-    return re.match(padrao, email) is not None
+MAX_NOME = 100
+MAX_EMAIL = 150
+MAX_MENSAGEM = 200
 
 contas = [
     {"username": "admin", "nome_perfil": "Administrador Geral", "email": "admin@doacoes.com", "senha": "123", "telefone": "999999999", "tipo": "admin"},
@@ -34,14 +27,14 @@ def obter_inteiro(prompt):
                 raise ValueError
             return int(valor)
         except ValueError:
-            print("\nEntrada inválida. Por favor, digite um número inteiro válido.")
+            print("Entrada inválida. Por favor, digite um número inteiro válido.")
 
 def obter_flutuante(prompt):
     while True:
         try:
             return float(input(prompt))
         except ValueError:
-            print("\nEntrada inválida. Por favor, digite um valor numérico válido (ex: 100.00).")
+            print("Entrada inválida. Por favor, digite um valor numérico válido (ex: 100.00).")
         
 def exibir_menu_principal():
     print("\n--- Menu Principal ---")
@@ -54,7 +47,7 @@ def exibir_menu_principal():
 def fazer_login():
     global conta_logada
     if conta_logada:
-        print(f"\nVocê já está logado como {conta_logada['nome_perfil']}.")
+        print(f"Você já está logado como {conta_logada['nome_perfil']}.")
         return
 
     email = input("Digite seu e-mail: ")
@@ -63,34 +56,29 @@ def fazer_login():
     for conta in contas:
         if conta["email"] == email and conta["senha"] == senha:
             conta_logada = conta
-            print(f"\nLogin realizado com sucesso! Bem-vindo(a), {conta_logada['nome_perfil']}!")
+            print(f"Login realizado com sucesso! Bem-vindo(a), {conta_logada['nome_perfil']}!")
             return
-    print("\nE-mail ou senha incorretos. Tente novamente.")
+    print("E-mail ou senha incorretos. Tente novamente.")
 
 def cadastrar_conta():
     print("\n--- Cadastro de Nova Conta ---")
     username = input("Nome de usuário: ")
     nome_perfil = input("Nome de perfil: ")
-    
-    # ✅ VALIDAÇÃO DE EMAIL ADICIONADA
+    email = input("E-mail: ")
+
     while True:
-        email = input("E-mail: ")
-        if not validar_email(email):
-            print("❌ Formato de email inválido! Use: usuario@provedor.com")
-            continue
-            
         email_valido = True
         for conta in contas:
             if conta["email"] == email:
-                print("\nEste e-mail já está em uso. Por favor, use outro.")
+                print("Este e-mail já está em uso. Por favor, use outro.")
                 email_valido = False
                 break
         if email_valido:
             break
-
+        email = input("E-mail: ") 
     senha = input("Senha: ")
     
-    telefone = str(obter_inteiro("Telefone (apenas números): "))
+    telefone = input("Telefone: ")
 
     nova_conta = {
         "username": username,
@@ -101,21 +89,20 @@ def cadastrar_conta():
         "tipo": "normal"  
     }
     contas.append(nova_conta)
-    print("\nConta cadastrada com sucesso! Agora você pode fazer login.")
+    print("Conta cadastrada com sucesso! Agora você pode fazer login.")
 
-# ✅ CORREÇÃO NA FUNÇÃO DE DESCONEXÃO
 def desconectar_conta_atual():
     global conta_logada
-    if not conta_logada:  # ✅ VERIFICA SE EXISTE CONTA LOGADA
-        print("\nNenhuma conta está logada para desconectar.")
+    if not conta_logada:
+        print("Nenhuma conta está logada para desconectar.")
         return
     
     if conta_logada["tipo"] == "admin":
-        print("\nA conta de administrador não pode ser desconectada por este menu.")
+        print("A conta de administrador não pode ser desconectada por este menu.")
         return
 
     while True:
-        confirmacao = input(f"\nDeseja realmente desconectar a conta {conta_logada['nome_perfil']}? (s/n): ").lower()
+        confirmacao = input(f"Deseja realmente desconectar a conta {conta_logada['nome_perfil']}? (s/n): ").lower()
         if confirmacao in ['s', 'n']:
             break
         else:
@@ -123,9 +110,9 @@ def desconectar_conta_atual():
 
     if confirmacao == 's':
         conta_logada = None
-        print("\nConta desconectada com sucesso.")
+        print("Conta desconectada com sucesso.")
     else:
-        print("\nDesconexão cancelada.")
+        print("Desconexão cancelada.")
 
 def menu_usuario_normal():
     while True:
@@ -146,14 +133,14 @@ def menu_usuario_normal():
         elif escolha == 3:
             break
         elif escolha == 0:
-            print("\nSaindo do sistema. Até mais!")
+            print("Saindo do sistema. Até mais!")
             exit()
         else:
-            print("\nOpção inválida. Tente novamente.")
+            print("Opção inválida. Tente novamente.")
 
 def doar_para_campanha():
     if not campanhas:
-        print("\nNão há campanhas ativas no momento.")
+        print("Não há campanhas ativas no momento.")
         return
 
     print("\n--- Campanhas Disponíveis para Doação ---")
@@ -163,7 +150,6 @@ def doar_para_campanha():
         print(f"Descrição: {campanha['descricao']}")
         print(f"Arrecadado: R$ {campanha['valor_arrecadado']:.2f} / Estimado: R$ {campanha['valor_estimado']:.2f}")
         print("-" * 30)
-
 
     while True:
         id_campanha = obter_inteiro("Digite o ID da campanha para a qual deseja doar: ")
@@ -176,18 +162,17 @@ def doar_para_campanha():
         if campanha_encontrada:
             break 
         else:
-            print("\nID de campanha inválido ou não encontrado. Verifique o ID e digite novamente.")
-
+            print("ID de campanha inválido ou não encontrado. Verifique o ID e digite novamente.")
 
     while True:
         valor_doacao = obter_flutuante("Digite o valor que deseja doar: R$ ")
         if valor_doacao > 0:
             break
         else:
-            print("\nO valor da doação deve ser positivo. Digite novamente.")
+            print("O valor da doação deve ser positivo. Digite novamente.")
 
     campanha_encontrada["valor_arrecadado"] += valor_doacao
-    print(f"\nDoação de R$ {valor_doacao:.2f} realizada com sucesso para a campanha '{campanha_encontrada['nome']}'!")
+    print(f"Doação de R$ {valor_doacao:.2f} realizada com sucesso para a campanha '{campanha_encontrada['nome']}'!")
     print(f"Novo valor arrecadado: R$ {campanha_encontrada['valor_arrecadado']:.2f}")
 
 def menu_ong():
@@ -212,10 +197,10 @@ def menu_ong():
         elif escolha == 4:
             break
         elif escolha == 0:
-            print("\nSaindo do sistema. Até mais!")
+            print("Saindo do sistema. Até mais!")
             exit()
         else:
-            print("\nOpção inválida. Tente novamente.")
+            print("Opção inválida. Tente novamente.")
 
 def criar_campanha():
     global proximo_id_campanha
@@ -230,7 +215,7 @@ def criar_campanha():
         if valor_estimado > 0:
             break
         else:
-            print("\nO valor estimado deve ser positivo. Digite novamente.")
+            print("O valor estimado deve ser positivo. Digite novamente.")
 
     nova_campanha = {
         "id": proximo_id_campanha,
@@ -244,13 +229,13 @@ def criar_campanha():
     }
     campanhas.append(nova_campanha)
     proximo_id_campanha += 1
-    print(f"\nCampanha '{nome}' criada com sucesso com o ID: {nova_campanha['id']}!")
+    print(f"Campanha '{nome}' criada com sucesso com o ID: {nova_campanha['id']}!")
 
 def gerenciar_minhas_campanhas():
     minhas_campanhas = [c for c in campanhas if c["criador_email"] == conta_logada["email"]]
 
     if not minhas_campanhas:
-        print("\nVocê ainda não criou nenhuma campanha.")
+        print("Você ainda não criou nenhuma campanha.")
         return
 
     while True:
@@ -269,35 +254,30 @@ def gerenciar_minhas_campanhas():
         escolha = obter_inteiro("Escolha uma opção: ")
 
         if escolha == 1:
-
             while True:
                 id_campanha = obter_inteiro("Digite o ID da campanha para retirar o valor: ")
                 campanha_selecionada = None
-                for c in minhas_campanhas:
-                    if c["id"] == id_campanha:
+                for c in campanhas:
+                    if c["id"] == id_campanha and c["criador_email"] == conta_logada["email"]:
                         campanha_selecionada = c
                         break
                 
                 if campanha_selecionada:
                     break 
                 else:
-                    print("\nID de campanha inválido ou a campanha não pertence a você. Digite novamente.")
+                    print("ID de campanha inválido ou a campanha não pertence a você. Digite novamente.")
 
             while True:
                 valor_retirar = obter_flutuante("Digite o valor a ser retirado: R$ ")
                 if valor_retirar <= 0:
-                    print("\nO valor a ser retirado deve ser positivo. Digite novamente.")
+                    print("O valor a ser retirado deve ser positivo. Digite novamente.")
                 elif valor_retirar > campanha_selecionada["valor_arrecadado"]:
-                    current_arrecadado = next((c['valor_arrecadado'] for c in campanhas if c['id'] == campanha_selecionada['id']), 0)
-                    print(f"\nNão é possível retirar R$ {valor_retirar:.2f}. Saldo atual: R$ {current_arrecadado:.2f}. Digite novamente.")
+                    print(f"Não é possível retirar R$ {valor_retirar:.2f}. Saldo atual: R$ {campanha_selecionada['valor_arrecadado']:.2f}. Digite novamente.")
                 else:
-                    for c in campanhas:
-                        if c["id"] == campanha_selecionada["id"]:
-                            c["valor_arrecadado"] -= valor_retirar
-                            print(f"\nRetirada de R$ {valor_retirar:.2f} realizada com sucesso da campanha '{c['nome']}'.")
-                            print(f"Novo valor arrecadado: R$ {c['valor_arrecadado']:.2f}")
-                            break
-                    break 
+                    campanha_selecionada["valor_arrecadado"] -= valor_retirar
+                    print(f"Retirada de R$ {valor_retirar:.2f} realizada com sucesso da campanha '{campanha_selecionada['nome']}'.")
+                    print(f"Novo valor arrecadado: R$ {campanha_selecionada['valor_arrecadado']:.2f}")
+                    break
 
         elif escolha == 2:
             while True:
@@ -314,7 +294,7 @@ def gerenciar_minhas_campanhas():
                 if campanha_para_apagar:
                     break 
                 else:
-                    print("\nID de campanha inválido ou a campanha não pertence a você. Digite novamente.")
+                    print("ID de campanha inválido ou a campanha não pertence a você. Digite novamente.")
 
             while True:
                 confirmacao = input(f"Tem certeza que deseja apagar a campanha '{campanha_para_apagar['nome']}'? (s/n): ").lower()
@@ -325,31 +305,31 @@ def gerenciar_minhas_campanhas():
             
             if confirmacao == 's':
                 campanhas.pop(index_para_apagar)
-                print(f"\nCampanha '{campanha_para_apagar['nome']}' apagada com sucesso.")
+                print(f"Campanha '{campanha_para_apagar['nome']}' apagada com sucesso.")
                 minhas_campanhas = [c for c in campanhas if c["criador_email"] == conta_logada["email"]] 
             else:
-                print("\nOperação de apagar campanha cancelada.")
+                print("Operação de apagar campanha cancelada.")
 
         elif escolha == 3:
             break
         else:
-            print("\nOpção inválida. Tente novamente.")
+            print("Opção inválida. Tente novamente.")
 
 def menu_admin():
-    print("\n--- Menu do Administrador ---")
-    print("Funcionalidades de administrador ainda não implementadas.")
-    print("A conta de administrador não pode ser desconectada por este menu.")
-    print("1. Voltar ao Menu Principal (Login/Cadastro)")
-    print("0. Sair do Sistema")
-    
-    escolha = obter_inteiro("Escolha uma opção: ")
-    if escolha == 1:
-        pass
-    elif escolha == 0:
-        print("\nSaindo do sistema. Até mais!")
-        exit()
-    else:
-        print("\nOpção inválida. Tente novamente.")
+    while True:
+        print("\n--- Menu do Administrador ---")
+        print("Funcionalidades de administrador ainda não implementadas.")
+        print("1. Voltar ao Menu Principal (Login/Cadastro)")
+        print("0. Sair do Sistema")
+        
+        escolha = obter_inteiro("Escolha uma opção: ")
+        if escolha == 1:
+            break
+        elif escolha == 0:
+            print("Saindo do sistema. Até mais!")
+            exit()
+        else:
+            print("Opção inválida. Tente novamente.")
 
 def iniciar_sistema():
     while True:
@@ -370,10 +350,10 @@ def iniciar_sistema():
         elif escolha == 3 and conta_logada and conta_logada["tipo"] != "admin":
             desconectar_conta_atual()
         elif escolha == 0:
-            print("\nSaindo do sistema. Até mais!")
+            print("Saindo do sistema. Até mais!")
             break
         else:
-            print("\nOpção inválida ou ação não permitida no momento. Tente novamente.")
+            print("Opção inválida ou ação não permitida no momento. Tente novamente.")
 
 if __name__ == "__main__":
     iniciar_sistema()
