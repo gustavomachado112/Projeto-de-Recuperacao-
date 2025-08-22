@@ -1,7 +1,7 @@
 
 ### **Relatório de Melhorias – Projeto Recuperação**
 
-**Autores:** Yvone Pimentel e Gustavo Aparecido
+**3 ANO C:**  Gustavo Aparecido
 
 **Link do GitHub para os códigos Python:** [https://github.com/gustavomachado112/Projeto-de-Recuperacao-/tree/main](https://github.com/gustavomachado112/Projeto-de-Recuperacao-/tree/main)
 
@@ -17,15 +17,13 @@ Bom, esse código da Emmanuele é bem completo em si, achei um ótimo código no
 #### **Erro 1**
 O código tentava buscar o valor atualizado usando `next()`, mas isso criava uma inconsistência porque `campanha_selecionada` era uma referência à campanha na lista `minhas_campanhas` (uma cópia filtrada). Quando o valor era atualizado na lista original `campanhas`, a cópia não se atualizava automaticamente. O `next()` buscava na lista original, mas mostrava um valor que não correspondia ao que estava sendo exibido, resultando em mensagens confusas sobre o saldo disponível.
 
-**Obs.:** você poderá ver o código no repositório que está no GitHub.
 
 **Melhoria 1**
 * Removi o `next()` desnecessário que causava a inconsistência.
 * Passei a usar diretamente `campanha_selecionada['valor_arrecadado']`.
 * Como `campanha_selecionada` agora é buscada diretamente na lista `campanhas`, ela sempre reflete o valor atualizado, mantendo referência direta ao objeto na lista principal e não uma cópia.
 
-**Resultado:** o saldo mostrado é sempre o valor real e atualizado.
-**Localização no código:** linha 290 do sistema.py.
+
 
 #### **Erro 2**
 **Erros nos telefones:** O `obter_inteiro()` convertia para número inteiro, fazendo com que se o telefone começasse com 0 (ex: `'0199999999'`), o zero era perdido. O `str()` convertia de volta para texto, mas sem o zero inicial, transformando `'0199999999'` em `'199999999'`.
@@ -35,7 +33,6 @@ O código tentava buscar o valor atualizado usando `next()`, mas isso criava uma
 * Mantive como string desde o início.
 * Isso preserva todos os caracteres, incluindo zeros iniciais.
 
-**Resultado:** telefones com zeros no início são armazenados corretamente.
 
 #### **Erro 3**
 Caso o usuário se tornasse administrador, o menu do administrador não tinha opção para sair do sistema, apenas para voltar ao menu principal. Isso deixava o administrador preso no sistema, sem uma forma direta de encerrar o programa.
@@ -43,7 +40,6 @@ Caso o usuário se tornasse administrador, o menu do administrador não tinha op
 **Melhoria 3**
 * Adicionei a opção de **Sair do Sistema** no menu do administrador.
 
-**Resultado:** experiência completa e consistente com os outros menus do sistema.
 
 #### **Erro 4**
 O código não tinha nenhuma função que limitasse os caracteres em mensagens ou em nenhum campo de texto. Isso era um problema porque era possível enviar grandes quantidades de informação de uma vez. Caso o sistema recebesse dados gigantescos, poderia ficar frágil. **Exemplo:** alguém poderia tentar mandar um roteiro de filme inteiro como mensagem.
@@ -54,7 +50,6 @@ O código não tinha nenhuma função que limitasse os caracteres em mensagens o
 * Melhorei a experiência do usuário com feedback imediato.
 * Protegi o sistema contra possíveis problemas de memória ou display.
 
-**Resultado:** sistema mais seguro, responsivo e confiável.
 
 #### **Erro 5**
 O código original não tinha validação para campos críticos, o que era um problema grave.
@@ -68,7 +63,6 @@ O código original não tinha validação para campos críticos, o que era um pr
   * Garantia de valores numéricos positivos
   * Limites de caracteres em campos de texto
 
-**Resultado:** dados mais confiáveis e sistema mais robusto. ✅
 
 ---
 
@@ -81,7 +75,7 @@ O módulo `random` era importado mas não era utilizado em nenhuma parte do cód
 **Melhoria implementada:**
 * Removi completamente a importação desnecessária.
 
-**Explicação técnica:**
+**Explicação :**
 * O Python carrega módulos importados na memória, mesmo que não sejam utilizados.
 * Remover importações desnecessárias melhora a performance e a legibilidade do código.
 
@@ -92,7 +86,7 @@ A versão original não verificava se os campos estavam preenchidos nem se os da
 **Melhoria implementada:**
 * Implementei loops de validação com verificação de campos vazios e limites de caracteres.
 
-**Explicação técnica:**
+**Explicação :**
 * Usei estruturas `while True` com condições aninhadas para garantir que todos os campos sejam preenchidos corretamente antes de prosseguir.
 * Utilizei `.strip()` para remover espaços desnecessários.
 * Usei `len()` para verificar comprimentos.
@@ -104,7 +98,7 @@ Não havia nenhuma verificação do formato do email. Qualquer texto era aceito 
 **Melhoria implementada:**
 * Implementei validação básica do formato de email.
 
-**Explicação técnica:**
+**Explicação :**
 * Verificação da presença do caractere "@".
 * Verificação da existência de um ponto na parte do domínio após o "@".
 * Garante formato mínimo válido como: `usuario@provedor.com`.
@@ -116,7 +110,7 @@ Não havia limites mínimos ou máximos para o tamanho da mensagem, permitindo m
 **Melhoria implementada:**
 * Defini limites mínimo e máximo de caracteres para a mensagem.
 
-**Explicação técnica:**
+**Explicação:**
 * Usei `len()` para controlar o tamanho.
 * Defini mínimo de 1 caractere e máximo de 200 caracteres.
 
@@ -129,7 +123,7 @@ O sistema enviava automaticamente sem dar chance ao usuário de revisar os dados
 **Melhoria implementada:**
 * Adicionei uma etapa de confirmação mostrando todos os dados antes do envio.
 
-**Explicação técnica:**
+**Explicação:**
 * Exibição de todos os dados digitados com `f-strings`.
 * Opção de cancelar o envio.
 * Conversão da resposta do usuário para minúsculo para facilitar a comparação.
