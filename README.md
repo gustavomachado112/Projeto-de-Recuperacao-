@@ -7,11 +7,6 @@
 
 ---
 
-### **Observações iniciais**
-Bom, esse código da Emmanuele é bem completo em si, achei um ótimo código no geral. Encontrei bem poucos erros e fiz as melhorias que achei que precisavam ser feitas.
-
----
-
 ### **SISTEMA.PY**
 
 #### **Erro 1**
