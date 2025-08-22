@@ -1,7 +1,7 @@
 
 ### **Relatório de Melhorias – Projeto Recuperação, estao em baixo as melhorias e os erros**
 
-**projeto de recuperacao , esse e com as modificacoes:  link do diagrama caso vc queira ver:https://app.dynobird.com/?action=open&id=77c9e88d-ca61-4073-9825-a4780d4f85f1**
+**projeto de recuperacao , esse e com as modificacoes:  link do diagrama(bancodados):https://app.dynobird.com/?action=open&id=77c9e88d-ca61-4073-9825-a4780d4f85f1**
 
 **3 ANO C:**  Gustavo Aparecido , tinha que fazer melhorias no trabalho da emmanuele , tinha caido com o danilo , mas vc pediu pra eu mexer no dela
 
