@@ -5,8 +5,6 @@
 
 **3 ANO C:**  Gustavo Aparecido , tinha que fazer melhorias no trabalho da emmanuele , tinha caido com o danilo , mas vc pediu pra eu mexer no dela
 
-**Link do GitHub para os códigos Python:** [https://github.com/gustavomachado112/Projeto-de-Recuperacao-/tree/main](https://github.com/gustavomachado112/Projeto-de-Recuperacao-/tree/main)
-
 ---
 
 ### **Observações iniciais**
