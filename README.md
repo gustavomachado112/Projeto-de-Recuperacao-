@@ -309,9 +309,9 @@ As entidades `contato_tb` e `contato_para_conta_org_tb` tinham funções muito s
 * Isso permitiu que as mensagens fossem rastreadas de forma mais eficiente e evitou a duplicação de dados.
 
 **outros erros tambem**
-*bom os ints do IDS das tabelas nao estavam consistentes entre eles , tinha ids que tinham id(10) e outro que nao tinham , hoje em dia o certo  , e deixar sem os numeros , pois ele ja reconhece o tamanho , por isso que existe smal int , int , bigint e etc.
+* bom os ints do IDS das tabelas nao estavam consistentes entre eles , tinha ids que tinham id(10) e outro que nao tinham , hoje em dia o certo  , e deixar sem os numeros , pois ele ja reconhece o tamanho , por isso que existe smal int , int , bigint e etc.
 
-*bom  no pagamento_tb nao tinha adicionar forma de pagamento , e so forma de pagamento, isso seria um problema caso tivermos que adicionar no futuro  , entao fiz agora outra tabela , pra evitar dor de cabeca no futuro. 
+* bom  no pagamento_tb nao tinha adicionar forma de pagamento , e so forma de pagamento, isso seria um problema caso tivermos que adicionar no futuro  , entao fiz agora outra tabela , pra evitar dor de cabeca no futuro. 
 
 * bom esse que eu vou falar , seria caso a gente decedisse fazer um banco de dados  , nesse caso teria que ter as restricoes e os indices  nas tabelas  pois a tabela poderia repetir informacoes unique , que nao se repetem e outros casos tambem.por exemplo:um email nao se pode repetir em varias contas , sem as restricoes/indices poderia ocorrer tao problema., como:unique , indices e  a primeira chave e etc.
 #### **Outras duas melhorias realizadas:**
