@@ -317,4 +317,4 @@ As entidades `contato_tb` e `contato_para_conta_org_tb` tinham funções muito s
 #### **Outras duas melhorias realizadas:**
 * Padronizei todos os IDs para o tipo `INT`; antes eles estavam com números diferentes, agora todos estão consistentes, o que melhora desempenho e clareza.
 * Criei uma nova tabela chamada `forma_pagamento_tb`, garantindo melhor organização dos métodos de pagamento no sistema, com isso , conseguindo colocar uma nova forma de pagamento , ja que o pagamento_tb nao aceitava 
-. outra tambem foi os indices , eu adicionei indices em cada tabela do diagrama  , eu por ex :garantindo que e-mail, telefone, id_login  , eu estou garantindo que elas nao se repitam  , antes a tabela  a estrutura basica ,agora  mostras os indices e restricoes .
+* outra tambem foi os indices , eu adicionei indices em cada tabela do diagrama  , eu por ex :garantindo que e-mail, telefone, id_login  , eu estou garantindo que elas nao se repitam  , antes a tabela  a estrutura basica ,agora  mostras os indices e restricoes .
