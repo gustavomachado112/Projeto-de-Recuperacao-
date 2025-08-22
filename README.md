@@ -1,6 +1,8 @@
 
 ### **Relatório de Melhorias – Projeto Recuperação**
 
+**projeto de recuperacao , esse e com as modificacoes:  link do diagrama caso vc queira ver:https://app.dynobird.com/?action=open&id=77c9e88d-ca61-4073-9825-a4780d4f85f1**
+
 **3 ANO C:**  Gustavo Aparecido , tinha que fazer melhorias no trabalho da emmanuele , tinha caido com o danilo , mas vc pediu pra eu mexer no dela
 
 **Link do GitHub para os códigos Python:** [https://github.com/gustavomachado112/Projeto-de-Recuperacao-/tree/main](https://github.com/gustavomachado112/Projeto-de-Recuperacao-/tree/main)
