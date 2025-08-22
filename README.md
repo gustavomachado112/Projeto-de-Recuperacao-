@@ -308,6 +308,11 @@ As entidades `contato_tb` e `contato_para_conta_org_tb` tinham funções muito s
 * Unifiquei as duas entidades em uma única tabela para gerenciar contatos e mensagens, renomeando-a para `mensagem_contato_tb`.
 * Isso permitiu que as mensagens fossem rastreadas de forma mais eficiente e evitou a duplicação de dados.
 
+**outros erros tambem**
+*bom os ints do IDS das tabelas nao estavam consistentes entre eles , tinha ids que tinham id(10) e outro que nao tinham , hoje em dia o certo  , e deixar sem os numeros , pois ele ja reconhece o tamanho , por isso que existe smal int , int , bigint e etc.
+*bom  no pagamento_tb nao tinha adicionar forma de pagamento , e so forma de pagamento, isso seria um problema caso tivermos que adicionar no futuro  , entao fiz agora outra tabela , pra evitar dor de cabeca no futuro. 
+* bom esse que eu vou falar , seria caso a gente decedisse fazer um banco de dados  , nesse caso teria que ter as restricoes e os indices  nas tabelas  pois a tabela poderia repetir informacoes unique , que nao se repetem e outros casos tambem.por exemplo:um email nao se pode repetir em varias contas , sem as restricoes/indices poderia ocorrer tao problema., como:unique , indices e  a primeira chave e etc.
 #### **Outras duas melhorias realizadas:**
 * Padronizei todos os IDs para o tipo `INT`; antes eles estavam com números diferentes, agora todos estão consistentes, o que melhora desempenho e clareza.
-* Criei uma nova tabela chamada `forma_pagamento_tb`, garantindo melhor organização dos métodos de pagamento no sistema.
+* Criei uma nova tabela chamada `forma_pagamento_tb`, garantindo melhor organização dos métodos de pagamento no sistema, com isso , conseguindo colocar uma nova forma de pagamento , ja que o pagamento_tb nao aceitava 
+. outra tambem foi os indices , eu adicionei indices em cada tabela do diagrama  , eu por ex :garantindo que e-mail, telefone, id_login  , eu estou garantindo que elas nao se repitam  , antes a tabela  a estrutura basica ,agora  mostras os indices e restricoes .
