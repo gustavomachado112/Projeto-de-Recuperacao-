@@ -1,5 +1,5 @@
 
-### **Relatório de Melhorias – Projeto Recuperação**
+### **Relatório de Melhorias – Projeto Recuperação, estao em baixo as melhorias e os erros**
 
 **projeto de recuperacao , esse e com as modificacoes:  link do diagrama caso vc queira ver:https://app.dynobird.com/?action=open&id=77c9e88d-ca61-4073-9825-a4780d4f85f1**
 
